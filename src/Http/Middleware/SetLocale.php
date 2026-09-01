@@ -10,13 +10,13 @@ use Liberu\Foundation\Localization\Context\LocaleContext;
 use Liberu\Foundation\Localization\Context\LocaleResolver;
 use Symfony\Component\HttpFoundation\Response;
 
-final class SetLocale
+final readonly class SetLocale
 {
-    private readonly LocaleResolver $resolver;
+    private LocaleResolver $resolver;
 
     public function __construct(?LocaleResolver $resolver = null)
     {
-        $this->resolver = $resolver ?? new LocaleResolver();
+        $this->resolver = $resolver ?? new LocaleResolver;
     }
 
     /** @param Closure(Request): Response $next */

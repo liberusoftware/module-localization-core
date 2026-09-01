@@ -16,6 +16,4 @@ final class LocalizationServiceProvider extends ServiceProvider
         $this->app->singleton(TranslationRegistry::class);
         $this->app->alias(TranslationRegistry::class, TranslationProviderRegistry::class);
     }
-
-    public function boot(): void {}
 }
