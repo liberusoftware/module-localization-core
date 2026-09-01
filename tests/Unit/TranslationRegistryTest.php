@@ -3,8 +3,8 @@
 use Liberu\Foundation\Localization\Translation\TranslationRegistry;
 use Liberu\Localization\Contracts\TranslationProvider;
 
-it('registers translation providers behind the neutral contract', function (): void {
-    $provider = new class implements TranslationProvider
+it('registers translation providers behind the neutral contract', function () {
+    $provider = new class() implements TranslationProvider
     {
         public function name(): string
         {
@@ -26,15 +26,15 @@ it('registers translation providers behind the neutral contract', function (): v
             return ['en' => 'English'];
         }
     };
-    $registry = new TranslationRegistry;
+    $registry = new TranslationRegistry();
     $registry->register($provider);
 
     expect($registry->get('test'))->toBe($provider)
         ->and($registry->all())->toBe(['test' => $provider]);
 });
 
-it('rejects duplicate provider names', function (): void {
-    $provider = new class implements TranslationProvider
+it('rejects duplicate provider names', function () {
+    $provider = new class() implements TranslationProvider
     {
         public function name(): string
         {
@@ -56,7 +56,7 @@ it('rejects duplicate provider names', function (): void {
             return [];
         }
     };
-    $registry = new TranslationRegistry;
+    $registry = new TranslationRegistry();
     $registry->register($provider);
     $registry->register($provider);
 })->throws(InvalidArgumentException::class);
